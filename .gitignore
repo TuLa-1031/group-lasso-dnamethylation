@@ -1,0 +1,17 @@
+# Data
+data/
+*.csv
+*.tsv
+*.gz
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# System
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
