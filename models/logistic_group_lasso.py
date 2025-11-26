@@ -32,7 +32,6 @@ class LogisticGroupLasso(BaseEstimator, ClassifierMixin):
         
         n_samples, n_features = X.shape
         
-        # Identify unique groups and their indices
         self.unique_groups_ = np.unique(self.groups)
         self.group_indices_ = {g: np.where(self.groups == g)[0] for g in self.unique_groups_}
         self.group_weights_ = {g: np.sqrt(len(idxs)) for g, idxs in self.group_indices_.items()}
@@ -42,23 +41,21 @@ class LogisticGroupLasso(BaseEstimator, ClassifierMixin):
         self.intercept_ = 0.0
         
         # Optimization loop (FISTA)
-        w = np.zeros(n_features + 1) # +1 for intercept
+        w = np.zeros(n_features + 1) # +1: intercept
         y_k = w.copy()
         t_k = 1.0
         
         for k in range(self.max_iter):
             w_old = w.copy()
             
-            # Gradient Step
             grad = self._compute_gradient(X, y, y_k)
             
-            # Backtracking Line Search (simplified: just constant or decaying LR often works, 
-            # but here we use a fixed step size for simplicity or simple decay)
+            # Backtracking Line Search
             step_size = self.learning_rate / (1 + 0.01 * k) 
             
             w_grad = y_k - step_size * grad
             
-            # Proximal Step (Group Soft Thresholding)
+            # Proximal Step
             w_new = self._proximal_operator(w_grad, step_size)
             
             # FISTA update
