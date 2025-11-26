@@ -15,9 +15,9 @@ Mục tiêu của repo là xác định các vị trí Methyl hóa (CpG) có ả
 -   **Tối ưu hóa**: Sử dụng thuật toán **Proximal Gradient Descent (FISTA)** để giải quyết bài toán tối ưu lồi với thành phần điều chuẩn L1 (Lasso).
 -   **Cơ chế**: Thành phần điều chuẩn L1 ép các trọng số của các CpG ít quan trọng về đúng bằng 0, giúp mô hình có khả năng "tự chọn lọc" đặc trưng (Feature Selection).
 
-## 3. Cấu trúc Dự án
+## 3. Cấu trúc repo
 
-Dự án được tổ chức thành các module chức năng sau:
+Repo được tổ chức thành các module:
 
 ### 3.1. Source code
 *   **`main.py`**:
@@ -34,7 +34,7 @@ Dự án được tổ chức thành các module chức năng sau:
 
 ### 3.2. Script
 *   **`prepare_data.py`**:
-    *   Script chạy một lần để chuẩn hóa Ensembl ID (loại bỏ hậu tố version).
+    *   Script chạy một lần để chuẩn hóa Ensembl ID(loại bỏ hậu tố).
     *   Xác định danh sách các Gen và Mẫu bệnh phẩm (Samples) chung giữa các nguồn dữ liệu (CNV, mRNA, Methylation).
 
 *   **`init.py`**:
